@@ -1,0 +1,21 @@
+I am process 9015, running on awi02.hpc.tudelft.nl: starting (Sat Feb 15 13:08:35 2020)
+Namespace(audio_model='Davenet', batch_size=64, data_train='../data/Oxford102/train/filenames.pickle', data_val='../data/Oxford102/test/filenames.pickle', exp_dir='exp/Data-filenames.pickle/AudioModel-Davenet_ImageModel-VGG16_Optim-sgd_LR-0.001_Epochs-100', image_model='VGG16', lr=0.001, lr_decay=40, margin=1.0, momentum=0.9, n_epochs=100, n_print_steps=100, optim='sgd', pretrained_image_model=False, resume=True, simtype='MISA', weight_decay=5e-07)
+
+Previous Progress:
+[epoch    step best_epoch best_avg_r10   time]
+
+Resume training from:
+  epoch = 80
+  global_step = 8800
+  best_epoch = 56
+  best_acc = 0.2476
+loaded parameters from epoch 80
+loaded state dict from epoch 80
+current #steps=8800, #epochs=81
+start training...
+Epoch: [81][0/110]	Time 77.304 (77.304)	Data 74.695 (74.695)	Loss total 0.5402 (0.5402)
+Epoch: [81][100/110]	Time 0.777 (6.783)	Data 0.000 (5.688)	Loss total 0.5373 (0.5757)
+ * Audio R@1 0.246 Image R@1 0.172 over 11550 validation pairs
+ * Audio AP@50 0.013 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [82][90/110]	Time 1.121 (6.443)	Data 0.000 (5.349)	Loss total 0.5040 (0.5642)
+slurmstepd: error: *** STEP 5004046.0 ON awi02 CANCELLED AT 2020-02-16T13:08:17 DUE TO TIME LIMIT ***
