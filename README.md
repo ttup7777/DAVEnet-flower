@@ -12,18 +12,13 @@ David Harwath, Adrià Recasens, Dídac Surís, Galen Chuang, Antonio Torralba, a
 
 ## Data
 
-You will need the PlacesAudio400k spoken caption corpus in addition to the Places205 image dataset:
+You will need the 102 category Flower dataset and Caltech-UCSD Birds 200
 
-http://groups.csail.mit.edu/sls/downloads/placesaudio/
-
-http://places.csail.mit.edu/
-
-Please follow the instructions provided in the PlacesAudio400k download package with respect to how to configure and specify the dataset .json files.
 
 ## Model Training
 
-python run.py train.json --data-val val.json
+python3 run.py --exp-dir exp/Data-filenames.pickle/AudioModel-Davenet_ImageModel-VGG16_Optim-sgd_LR-0.001_Epochs-100 --resume 
 
-Where train.json and val.json are included in the PlacesAudio400k dataset.
+to continue training and testing
 
 See the run.py script for more training options.
