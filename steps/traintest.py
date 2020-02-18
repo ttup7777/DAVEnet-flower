@@ -4,6 +4,8 @@ import torch
 import torch.nn as nn
 import numpy as np
 import pickle
+
+
 from .util import *
 
 def train(audio_model, image_model, train_loader, test_loader, args):
@@ -166,6 +168,13 @@ def validate(audio_model, image_model, val_loader, args):
     Al_embeddings = []
     with torch.no_grad():
         for i, (image_input, audio_input, nframes,Imlabel, Audiolabel) in enumerate(val_loader):
+            
+            image_input,inverse = torch.unique(image_input,sorted = False,return_inverse = True, dim=0)
+
+            perm = torch.arange(inverse.size(0), dtype=inverse.dtype, device=inverse.device)
+            inverse, perm = inverse.flip([0]), perm.flip([0])
+            perm = inverse.new_empty(image_input.size(0)).scatter_(0, inverse, perm)
+
             image_input = image_input.to(device)
             audio_input = audio_input.to(device)
 
@@ -178,8 +187,8 @@ def validate(audio_model, image_model, val_loader, args):
 
             I_embeddings.append(image_output)
             A_embeddings.append(audio_output)
-
-            Il_embeddings.append(Imlabel)
+            
+            Il_embeddings.append(Imlabel[perm])
             Al_embeddings.append(Audiolabel)
             
             pooling_ratio = round(audio_input.size(-1) / audio_output.size(-1))
@@ -190,11 +199,16 @@ def validate(audio_model, image_model, val_loader, args):
             batch_time.update(time.time() - end)
             end = time.time()
 
+
         image_output = torch.cat(I_embeddings) 
+        print("image_output"+str(image_output.shape))
         audio_output = torch.cat(A_embeddings) 
+        print("audio_output"+str(audio_output.shape))
         nframes = torch.cat(frame_counts)
         Imlabel = torch.cat(Il_embeddings)
+        print("Imlabel"+str(Imlabel.shape))
         Audiolabel = torch.cat(Al_embeddings)
+        print("Audiolabel"+str(Audiolabel.shape))
 
         results = calc_rank_k(image_output, audio_output, nframes, Imlabel, Audiolabel, simtype=args.simtype,k=1,m=50)
         A_r1 = results['A_r1']
