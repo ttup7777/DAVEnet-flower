@@ -211,3 +211,38 @@ all audios are used
  * Audio R@1 0.246 Image R@1 0.172 over 11550 validation pairs
  * Audio AP@50 0.013 Image AP@50 0.006 over 11550 validation pairs
 
+Epoch: [83][80/110]	Time 1.015 (5.439)	Data 0.000 (4.379)	Loss total 0.6329 (0.5746)
+ * Audio R@1 0.248 Image R@1 0.171 over 11550 validation pairs
+ * Audio AP@50 0.071 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [84][70/110]	Time 1.036 (5.292)	Data 0.011 (4.239)	Loss total 0.4642 (0.5783)
+ * Audio R@1 0.251 Image R@1 0.166 over 11550 validation pairs
+ * Audio AP@50 0.071 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [85][60/110]	Time 46.010 (5.594)	Data 44.930 (4.540)	Loss total 0.4431 (0.5705)
+ * Audio R@1 0.248 Image R@1 0.171 over 11550 validation pairs
+ * Audio AP@50 0.072 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [86][50/110]	Time 1.047 (5.639)	Data 0.000 (4.576)	Loss total 0.5061 (0.5655)
+ * Audio R@1 0.245 Image R@1 0.162 over 11550 validation pairs
+ * Audio AP@50 0.071 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [87][40/110]	Time 1.159 (5.716)	Data 0.000 (4.633)	Loss total 0.5802 (0.5646)
+ * Audio R@1 0.245 Image R@1 0.168 over 11550 validation pairs
+ * Audio AP@50 0.071 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [88][30/110]	Time 1.015 (5.676)	Data 0.000 (4.596)	Loss total 0.3991 (0.5615)
+ * Audio R@1 0.242 Image R@1 0.165 over 11550 validation pairs
+ * Audio AP@50 0.072 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [89][20/110]	Time 1.109 (5.595)	Data 0.000 (4.521)	Loss total 0.5733 (0.5619)
+ * Audio R@1 0.241 Image R@1 0.164 over 11550 validation pairs
+ * Audio AP@50 0.071 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [90][10/110]	Time 1.029 (5.531)	Data 0.000 (4.463)	Loss total 0.4142 (0.5628)
+ * Audio R@1 0.241 Image R@1 0.165 over 11550 validation pairs
+ * Audio AP@50 0.072 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [91][0/110]	Time 66.472 (5.517)	Data 65.377 (4.451)	Loss total 0.6167 (0.5617)
+Epoch: [91][100/110]	Time 0.856 (5.480)	Data 0.000 (4.415)	Loss total 0.6664 (0.5633)
+ * Audio R@1 0.239 Image R@1 0.163 over 11550 validation pairs
+ * Audio AP@50 0.071 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [92][90/110]	Time 1.262 (5.513)	Data 0.000 (4.444)	Loss total 0.7242 (0.5629)
+ * Audio R@1 0.241 Image R@1 0.169 over 11550 validation pairs
+ * Audio AP@50 0.072 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [93][80/110]	Time 1.193 (5.521)	Data 0.000 (4.451)	Loss total 0.6352 (0.5627)
+ * Audio R@1 0.243 Image R@1 0.164 over 11550 validation pairs
+ * Audio AP@50 0.072 Image AP@50 0.006 over 11550 validation pairs
+Epoch: [94][70/110]	Time 1.095 (5.521)	Data 0.000 (4.451)	Loss total 0.4399 (0.5632)
