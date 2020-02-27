@@ -24,7 +24,7 @@ parser.add_argument("--resume", action="store_true", dest="resume",
         help="load from exp_dir if True")
 parser.add_argument("--optim", type=str, default="sgd",
         help="training optimizer", choices=["sgd", "adam"])
-parser.add_argument('-b', '--batch-size', default=64, type=int,
+parser.add_argument('-b', '--batch-size', default=50, type=int,
     metavar='N', help='mini-batch size (default: 100)')
 parser.add_argument('--lr', '--learning-rate', default=0.001, type=float,
     metavar='LR', help='initial learning rate')
@@ -66,7 +66,7 @@ train_loader = torch.utils.data.DataLoader(
 
 val_loader = torch.utils.data.DataLoader(
     dataloaders.ImageCaptionDataset(args.data_val, image_conf={'center_crop':True},val_option=True),
-    batch_size=args.batch_size, shuffle=False, num_workers=12, pin_memory=True)
+    batch_size=50, shuffle=False, num_workers=12, pin_memory=True)
 
 audio_model = models.Davenet()
 image_model = models.VGG16(pretrained=args.pretrained_image_model)

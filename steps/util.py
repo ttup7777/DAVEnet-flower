@@ -98,9 +98,9 @@ def sampled_margin_rank_loss(image_outputs, audio_outputs, nframes, Imlabel, Aud
     for i in range(n):
         I_imp_ind = i
         A_imp_ind = i
-        while I_imp_ind == i and Imlabel[I_imp_ind]==Audiolabel[i]:#Imposter不同类
+        while Imlabel[I_imp_ind]==Audiolabel[i]:#Imposter不同类
             I_imp_ind = np.random.randint(0, n)
-        while A_imp_ind == i and Imlabel[i]==Audiolabel[A_imp_ind]:
+        while Imlabel[i]==Audiolabel[A_imp_ind]:
             A_imp_ind = np.random.randint(0, n)
         nF = nframes[i]
         nFimp = nframes[A_imp_ind]
