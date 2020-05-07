@@ -1,0 +1,336 @@
+Namespace(RNN_dropout=0.0, WORKERS=8, audio_model='Davenet', batch_size=128, cfg_file='Confg/birds_train_batch_wo_cd.yml', data_path='/tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/data/birds', exp_dir='', gpu_id=0, image_model='VGG16', img_size=256, lr=0.0001, lr_decay=50, manualSeed=200, margin=1.0, momentum=0.9, n_epochs=60, n_heads=1, n_print_steps=2, optim='adam', pretrained_image_model=False, result_file='wo_cd.text', resume=True, rnn_type='LSTM', save_root='outputs/01_Baseline/birds/wo_cd', simtype='MISA', smooth_gamm3=10.0, start_epoch=40, tasks='extraction', topk=3, weight_decay=0.0001)
+Total filenames:  11788 001.Black_footed_Albatross/Black_Footed_Albatross_0046_18.jpg
+Load filenames from: /tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/data/birds/train/filenames.pickle (8855)
+Total filenames:  11788 001.Black_footed_Albatross/Black_Footed_Albatross_0046_18.jpg
+Load filenames from: /tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/data/birds/test/filenames.pickle (2933)
+Total filenames:  11788 001.Black_footed_Albatross/Black_Footed_Albatross_0046_18.jpg
+Load filenames from: /tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/data/birds/test/filenames.pickle (2933)
+loaded parameters from epoch 40
+current #steps=0, #epochs=40
+start training...
+/tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/code/Interspeech2020/FGSL_V10.1/utils/config.py:235: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  yaml_cfg = edict(yaml.load(f))
+/tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/code/Interspeech2020/FGSL_V10.1/models/classification.py:15: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  nn.init.xavier_uniform(self.L1.weight.data)
+/tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/code/Interspeech2020/FGSL_V10.1/models/AudioModels.py:89: UserWarning: nn.init.orthogonal is now deprecated in favor of nn.init.orthogonal_.
+  nn.init.orthogonal(self.hidden.weight.data)
+/tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/code/Interspeech2020/FGSL_V10.1/models/AudioModels.py:91: UserWarning: nn.init.orthogonal is now deprecated in favor of nn.init.orthogonal_.
+  nn.init.orthogonal(self.hidden.weight.data)
+/tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/code/Interspeech2020/FGSL_V10.1/models/ImageModels.py:78: UserWarning: nn.init.orthogonal is now deprecated in favor of nn.init.orthogonal_.
+  nn.init.orthogonal(self.hidden.weight.data)
+/tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/code/Interspeech2020/FGSL_V10.1/models/ImageModels.py:80: UserWarning: nn.init.orthogonal is now deprecated in favor of nn.init.orthogonal_.
+  nn.init.orthogonal(self.hidden.weight.data)
+/tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/code/Interspeech2020/FGSL_V10.1/models/classification.py:25: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  nn.init.xavier_uniform(self.L1.weight.data)
+iteration = 0 | loss = 4.932328 
+iteration = 5 | loss = 4.934505 
+iteration = 10 | loss = 5.109011 
+iteration = 15 | loss = 5.165203 
+iteration = 20 | loss = 5.074661 
+iteration = 25 | loss = 5.374022 
+iteration = 30 | loss = 5.684456 
+iteration = 35 | loss = 5.324770 
+iteration = 40 | loss = 4.850039 
+iteration = 45 | loss = 5.041945 
+iteration = 50 | loss = 5.214797 
+iteration = 55 | loss = 5.048940 
+iteration = 60 | loss = 5.161660 
+iteration = 65 | loss = 5.183936 
+/scratch/xinsheng/software/anaconda/lib/python3.7/site-packages/torch/nn/functional.py:1340: UserWarning: nn.functional.tanh is deprecated. Use torch.tanh instead.
+  warnings.warn("nn.functional.tanh is deprecated. Use torch.tanh instead.")
+/scratch/xinsheng/software/anaconda/lib/python3.7/site-packages/torch/nn/modules/loss.py:431: UserWarning: Using a target size (torch.Size([128])) that is different to the input size (torch.Size([128, 1])). This will likely lead to incorrect results due to broadcasting. Please ensure they have the same size.
+  return F.mse_loss(input, target, reduction=self.reduction)
+iteration = 0 | loss = 5.195436 
+iteration = 5 | loss = 4.956365 
+iteration = 10 | loss = 5.032654 
+iteration = 15 | loss = 5.371927 
+iteration = 20 | loss = 5.179557 
+iteration = 25 | loss = 4.881806 
+iteration = 30 | loss = 4.888684 
+iteration = 35 | loss = 5.105489 
+iteration = 40 | loss = 4.741693 
+iteration = 45 | loss = 5.275914 
+iteration = 50 | loss = 4.672254 
+iteration = 55 | loss = 4.840640 
+iteration = 60 | loss = 4.988748 
+iteration = 65 | loss = 4.889479 
+iteration = 0 | loss = 4.951495 
+iteration = 5 | loss = 4.797442 
+iteration = 10 | loss = 4.689442 
+iteration = 15 | loss = 5.161435 
+iteration = 20 | loss = 5.311519 
+iteration = 25 | loss = 5.396938 
+iteration = 30 | loss = 4.816297 
+iteration = 35 | loss = 5.036225 
+iteration = 40 | loss = 5.094005 
+iteration = 45 | loss = 5.204724 
+iteration = 50 | loss = 5.768991 
+iteration = 55 | loss = 5.083957 
+iteration = 60 | loss = 4.549302 
+iteration = 65 | loss = 5.071231 
+iteration = 0 | loss = 5.256683 
+iteration = 5 | loss = 4.666209 
+iteration = 10 | loss = 4.782818 
+iteration = 15 | loss = 4.970528 
+iteration = 20 | loss = 4.686324 
+iteration = 25 | loss = 4.773703 
+iteration = 30 | loss = 5.571340 
+iteration = 35 | loss = 5.058902 
+iteration = 40 | loss = 5.195709 
+iteration = 45 | loss = 5.051156 
+iteration = 50 | loss = 4.925288 
+iteration = 55 | loss = 4.602892 
+iteration = 60 | loss = 4.706943 
+iteration = 65 | loss = 5.052207 
+iteration = 0 | loss = 4.700044 
+iteration = 5 | loss = 5.232383 
+iteration = 10 | loss = 5.128977 
+iteration = 15 | loss = 5.524879 
+iteration = 20 | loss = 4.652245 
+iteration = 25 | loss = 4.974369 
+iteration = 30 | loss = 4.722595 
+iteration = 35 | loss = 5.034468 
+iteration = 40 | loss = 5.264218 
+iteration = 45 | loss = 4.481190 
+iteration = 50 | loss = 5.067873 
+iteration = 55 | loss = 4.722982 
+iteration = 60 | loss = 5.134767 
+iteration = 65 | loss = 5.026078 
+ Epoch: [45] Loss: 4.8481  R1_I2A: 0.4436 R1_A2I: 0.3498 
+                 
+ Epoch: [45] Loss: 4.8481  R1_I2A: 0.4694 mAP_I2A: 0.3901  R1_A2I: 0.3324 mAP_A2I: 0.2701 
+                     
+iteration = 0 | loss = 4.716879 
+iteration = 5 | loss = 5.558532 
+iteration = 10 | loss = 4.902473 
+iteration = 15 | loss = 5.172885 
+iteration = 20 | loss = 4.818994 
+iteration = 25 | loss = 4.995908 
+iteration = 30 | loss = 4.486952 
+iteration = 35 | loss = 4.808494 
+iteration = 40 | loss = 4.790944 
+iteration = 45 | loss = 5.118520 
+iteration = 50 | loss = 5.069294 
+iteration = 55 | loss = 4.894687 
+iteration = 60 | loss = 4.942376 
+iteration = 65 | loss = 5.070487 
+iteration = 0 | loss = 4.441294 
+iteration = 5 | loss = 5.031237 
+iteration = 10 | loss = 4.627381 
+iteration = 15 | loss = 4.975665 
+iteration = 20 | loss = 5.056509 
+iteration = 25 | loss = 4.720678 
+iteration = 30 | loss = 5.261771 
+iteration = 35 | loss = 4.929611 
+iteration = 40 | loss = 5.050144 
+iteration = 45 | loss = 4.751668 
+iteration = 50 | loss = 5.049490 
+iteration = 55 | loss = 4.703979 
+iteration = 60 | loss = 4.600688 
+iteration = 65 | loss = 4.628057 
+iteration = 0 | loss = 4.845027 
+iteration = 5 | loss = 4.858941 
+iteration = 10 | loss = 5.102952 
+iteration = 15 | loss = 4.582101 
+iteration = 20 | loss = 5.242634 
+iteration = 25 | loss = 4.936010 
+iteration = 30 | loss = 5.345238 
+iteration = 35 | loss = 4.922688 
+iteration = 40 | loss = 4.973957 
+iteration = 45 | loss = 4.643665 
+iteration = 50 | loss = 4.774079 
+iteration = 55 | loss = 4.857803 
+iteration = 60 | loss = 5.071893 
+iteration = 65 | loss = 4.501690 
+iteration = 0 | loss = 4.748758 
+iteration = 5 | loss = 4.736880 
+iteration = 10 | loss = 4.584498 
+iteration = 15 | loss = 5.194131 
+iteration = 20 | loss = 5.415552 
+iteration = 25 | loss = 4.729374 
+iteration = 30 | loss = 5.186897 
+iteration = 35 | loss = 5.248384 
+iteration = 40 | loss = 4.780442 
+iteration = 45 | loss = 4.746406 
+iteration = 50 | loss = 4.834033 
+iteration = 55 | loss = 4.967999 
+iteration = 60 | loss = 5.115616 
+iteration = 65 | loss = 4.849452 
+iteration = 0 | loss = 4.730936 
+iteration = 5 | loss = 5.379510 
+iteration = 10 | loss = 4.984232 
+iteration = 15 | loss = 4.838316 
+iteration = 20 | loss = 5.009917 
+iteration = 25 | loss = 4.844029 
+iteration = 30 | loss = 4.769985 
+iteration = 35 | loss = 5.130138 
+iteration = 40 | loss = 4.671341 
+iteration = 45 | loss = 4.972624 
+iteration = 50 | loss = 4.972367 
+iteration = 55 | loss = 4.620064 
+iteration = 60 | loss = 5.115138 
+iteration = 65 | loss = 4.667914 
+ Epoch: [50] Loss: 5.0556  R1_I2A: 0.4497 R1_A2I: 0.3525 
+                 
+ Epoch: [50] Loss: 5.0556  R1_I2A: 0.4732 mAP_I2A: 0.3961  R1_A2I: 0.3389 mAP_A2I: 0.2776 
+                     
+iteration = 0 | loss = 5.103855 
+iteration = 5 | loss = 5.091116 
+iteration = 10 | loss = 4.784591 
+iteration = 15 | loss = 4.663956 
+iteration = 20 | loss = 4.597204 
+iteration = 25 | loss = 4.885557 
+iteration = 30 | loss = 4.611384 
+iteration = 35 | loss = 5.052222 
+iteration = 40 | loss = 4.426528 
+iteration = 45 | loss = 4.505471 
+iteration = 50 | loss = 4.971442 
+iteration = 55 | loss = 4.875943 
+iteration = 60 | loss = 4.736739 
+iteration = 65 | loss = 4.344638 
+iteration = 0 | loss = 5.074555 
+iteration = 5 | loss = 4.396980 
+iteration = 10 | loss = 4.405073 
+iteration = 15 | loss = 4.590200 
+iteration = 20 | loss = 4.482877 
+iteration = 25 | loss = 4.472877 
+iteration = 30 | loss = 4.733226 
+iteration = 35 | loss = 5.133564 
+iteration = 40 | loss = 4.912472 
+iteration = 45 | loss = 4.480044 
+iteration = 50 | loss = 4.636485 
+iteration = 55 | loss = 4.242343 
+iteration = 60 | loss = 5.173827 
+iteration = 65 | loss = 4.632069 
+iteration = 0 | loss = 4.301293 
+iteration = 5 | loss = 4.734598 
+iteration = 10 | loss = 4.781688 
+iteration = 15 | loss = 4.829221 
+iteration = 20 | loss = 4.464151 
+iteration = 25 | loss = 4.724947 
+iteration = 30 | loss = 4.813312 
+iteration = 35 | loss = 4.867562 
+iteration = 40 | loss = 4.634219 
+iteration = 45 | loss = 4.989711 
+iteration = 50 | loss = 4.938646 
+iteration = 55 | loss = 4.700813 
+iteration = 60 | loss = 4.937900 
+iteration = 65 | loss = 4.622042 
+iteration = 0 | loss = 4.854704 
+iteration = 5 | loss = 4.979625 
+iteration = 10 | loss = 4.765916 
+iteration = 15 | loss = 4.582776 
+iteration = 20 | loss = 4.668409 
+iteration = 25 | loss = 5.264792 
+iteration = 30 | loss = 4.712656 
+iteration = 35 | loss = 4.691307 
+iteration = 40 | loss = 4.574148 
+iteration = 45 | loss = 4.508089 
+iteration = 50 | loss = 4.750842 
+iteration = 55 | loss = 4.412226 
+iteration = 60 | loss = 4.773924 
+iteration = 65 | loss = 5.273670 
+iteration = 0 | loss = 5.155733 
+iteration = 5 | loss = 5.105549 
+iteration = 10 | loss = 4.393342 
+iteration = 15 | loss = 4.695898 
+iteration = 20 | loss = 5.129744 
+iteration = 25 | loss = 5.313054 
+iteration = 30 | loss = 4.664232 
+iteration = 35 | loss = 4.949625 
+iteration = 40 | loss = 4.688768 
+iteration = 45 | loss = 4.211076 
+iteration = 50 | loss = 4.944601 
+iteration = 55 | loss = 4.472100 
+iteration = 60 | loss = 4.780576 
+iteration = 65 | loss = 4.748924 
+ Epoch: [55] Loss: 4.7803  R1_I2A: 0.4494 R1_A2I: 0.3515 
+                 
+iteration = 0 | loss = 4.412512 
+iteration = 5 | loss = 4.807614 
+iteration = 10 | loss = 5.239336 
+iteration = 15 | loss = 4.557130 
+iteration = 20 | loss = 4.611201 
+iteration = 25 | loss = 4.973948 
+iteration = 30 | loss = 4.853157 
+iteration = 35 | loss = 4.862724 
+iteration = 40 | loss = 4.226503 
+iteration = 45 | loss = 4.455789 
+iteration = 50 | loss = 4.529843 
+iteration = 55 | loss = 4.949672 
+iteration = 60 | loss = 4.882905 
+iteration = 65 | loss = 4.706122 
+iteration = 0 | loss = 4.951151 
+iteration = 5 | loss = 4.774100 
+iteration = 10 | loss = 4.168829 
+iteration = 15 | loss = 4.544568 
+iteration = 20 | loss = 4.852256 
+iteration = 25 | loss = 4.524784 
+iteration = 30 | loss = 4.768456 
+iteration = 35 | loss = 5.235935 
+iteration = 40 | loss = 4.604873 
+iteration = 45 | loss = 5.057965 
+iteration = 50 | loss = 4.712474 
+iteration = 55 | loss = 4.699699 
+iteration = 60 | loss = 5.040065 
+iteration = 65 | loss = 4.738799 
+iteration = 0 | loss = 4.747095 
+iteration = 5 | loss = 4.788910 
+iteration = 10 | loss = 4.394604 
+iteration = 15 | loss = 4.330711 
+iteration = 20 | loss = 4.835096 
+iteration = 25 | loss = 4.906648 
+iteration = 30 | loss = 4.740428 
+iteration = 35 | loss = 5.014157 
+iteration = 40 | loss = 4.559397 
+iteration = 45 | loss = 4.129482 
+iteration = 50 | loss = 5.149840 
+iteration = 55 | loss = 4.657733 
+iteration = 60 | loss = 4.426228 
+iteration = 65 | loss = 4.889835 
+iteration = 0 | loss = 4.242090 
+iteration = 5 | loss = 4.726647 
+iteration = 10 | loss = 4.940716 
+iteration = 15 | loss = 4.469909 
+iteration = 20 | loss = 4.727560 
+iteration = 25 | loss = 4.544337 
+iteration = 30 | loss = 4.671103 
+iteration = 35 | loss = 4.821725 
+iteration = 40 | loss = 4.556641 
+iteration = 45 | loss = 4.634953 
+iteration = 50 | loss = 4.825156 
+iteration = 55 | loss = 4.477197 
+iteration = 60 | loss = 4.510779 
+iteration = 65 | loss = 4.660325 
+iteration = 0 | loss = 4.543342 
+iteration = 5 | loss = 4.523288 
+iteration = 10 | loss = 4.498876 
+iteration = 15 | loss = 5.056608 
+iteration = 20 | loss = 4.962186 
+iteration = 25 | loss = 5.025317 
+iteration = 30 | loss = 4.945677 
+iteration = 35 | loss = 5.208513 
+iteration = 40 | loss = 4.439219 
+iteration = 45 | loss = 4.969453 
+iteration = 50 | loss = 4.870673 
+iteration = 55 | loss = 5.107068 
+iteration = 60 | loss = 4.586183 
+iteration = 65 | loss = 4.867843 
+ Epoch: [60] Loss: 4.2881  R1_I2A: 0.4576 R1_A2I: 0.3638 
+                 
+ Epoch: [60] Loss: 4.2881  R1_I2A: 0.4816 mAP_I2A: 0.4008  R1_A2I: 0.3411 mAP_A2I: 0.2789 
+                     
+iteration = 0 | loss = 4.248900 
+iteration = 5 | loss = 5.109818 
+iteration = 10 | loss = 4.753783 
+iteration = 15 | loss = 4.767881 
+iteration = 20 | loss = 4.770211 
+iteration = 25 | loss = 5.121997 
+iteration = 30 | loss = 4.196598 
+iteration = 35 | loss = 4.499237 
+iteration = 40 | loss = 4.800738 
+iteration = 45 | loss = 4.835654 
+iteration = 50 | loss = 4.483809 
+iteration = 55 | loss = 4.336899 
+iteration = 60 | loss = 5.057714 
+iteration = 65 | loss = 4.231773 
