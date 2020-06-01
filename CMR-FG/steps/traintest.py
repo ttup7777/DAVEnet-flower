@@ -54,7 +54,7 @@ def train(Models,train_loader,val_loader, test_loader, args):
         image_model = nn.DataParallel(image_model)
 
    
-    epoch = 55
+    epoch = cfg.start_epoch
     
     if epoch != 0:
         # audio_model.load_state_dict(torch.load("%s/models/audio_model_%d.pth" % (exp_dir,epoch)))

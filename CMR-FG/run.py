@@ -14,7 +14,7 @@ import sys
 sys.path.append("..")
 
 from dataloaders.datasets import SpeechDataset, pad_collate 
-from models import AudioModels, ImageModels_softatt, classification,AudioModels_selfatt,ImageModels
+from models import AudioModels, ImageModels_softatt, classification,AudioModels_selfatt,ImageModels,resnet_cbam,ImageModels_cbam
 
 from steps.traintest import train, validate, feat_extract_co, feat_extract_sne,feat_extract_sne_imgaud, feat_extract_gan
 import torchvision.transforms as transforms 
@@ -25,16 +25,16 @@ if __name__ == '__main__':
     #'/media/shawn/data/Data/birds'
     #'/tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/data/birds'
     # /run/user/1000/gvfs/sftp:host=sftp.tudelft.nl
-    #parser.add_argument('--data_path', type = str, default='H:/staff-bulk/ewi/insy/SpeechLab/TianTian/data/flowers/Oxford102') #
-    parser.add_argument('--data_path', type = str, default='/tudelft.net/staff-bulk/ewi/insy/SpeechLab/TianTian/data/flowers/Oxford102') #
+    parser.add_argument('--data_path', type = str, default='H:/staff-bulk/ewi/insy/SpeechLab/TianTian/data/flowers/Oxford102') #
+    #parser.add_argument('--data_path', type = str, default='/tudelft.net/staff-bulk/ewi/insy/SpeechLab/TianTian/data/flowers/Oxford102') #
     parser.add_argument('--exp_dir', type = str, default= '')
-    parser.add_argument('--save_root', type=str, default='outputs/02_Baseline/Oxford102/full')
+    parser.add_argument('--save_root', type=str, default='outputs/attention/Oxford102/full')
     parser.add_argument('--result_file',type=str,default=None)
-    parser.add_argument("--resume", action="store_true", default=True,
+    parser.add_argument("--resume", action="store_true", default=False,
             help="load from exp_dir if True")
     parser.add_argument("--optim", type=str, default="adam",
             help="training optimizer", choices=["sgd", "adam"])
-    parser.add_argument('--batch_size', default=32, type=int,
+    parser.add_argument('--batch_size', default=128, type=int,
         metavar='N', help='mini-batch size (default: 100)')
     parser.add_argument('--lr', '--learning-rate', default=0.001, type=float,
         metavar='LR', help='initial learning rate')
@@ -262,8 +262,8 @@ if __name__ == '__main__':
     elif cfg.SPEECH.model == 'CNN':
         audio_model = AudioModels.CNN_ENCODER(cfg.SPEECH.embedding_dim)
 
-    image_model = ImageModels_softatt.Resnet101()
-    # image_model = fgmodels.BaseNet(embedding_size = 1024, pretrained=True, attention=True)
+    #image_model = resnet_cbam.resnet50_cbam(pretrained=False)
+    image_model = ImageModels_FSEN.Resnet101()
 
     # train(audio_model, image_model,train_loader, val_loader, args)
 

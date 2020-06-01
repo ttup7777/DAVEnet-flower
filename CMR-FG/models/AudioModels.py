@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 from utils.config import cfg
-
+import math
 #pyramidal RNN
 
 def l2norm(x):
@@ -92,7 +92,7 @@ class attention(nn.Module):
         self.softmax = nn.Softmax(dim = 1)
     def forward(self, input):
         # calculate the attention weights
-        self.alpha = self.softmax(self.out(nn.functional.tanh(self.hidden(input))))
+        self.alpha = self.softmax(self.out(F.tanh(self.hidden(input))))
         # apply the weights to the input and sum over all timesteps
         x = torch.sum(self.alpha * input, 1)
         # return the resulting embedding
@@ -235,6 +235,67 @@ class CNN_RNN_ENCODER(nn.Module):
             return x
 
 
+class AttentionHead(nn.Module):
+    """A single attention head"""
+    def __init__(self, d_model, d_feature, dropout=0.1):
+        super().__init__()
+        # We will assume the queries, keys, and values all have the same feature size
+        self.attn = ScaledDotProductAttention(dropout)
+        self.query_tfm = nn.Linear(d_model, d_feature)
+        self.key_tfm = nn.Linear(d_model, d_feature)
+        self.value_tfm = nn.Linear(d_model, d_feature)
+ 
+    def forward(self, queries, keys, values, mask=None):
+        Q = self.query_tfm(queries) # (Batch, Seq, Feature)
+        K = self.key_tfm(keys) # (Batch, Seq, Feature)
+        V = self.value_tfm(values) # (Batch, Seq, Feature)
+        # compute multiple attention weighted sums
+        x = self.attn(Q, K, V)
+        return x
+ 
+class MultiHeadAttention(nn.Module):
+    """The full multihead attention block"""
+    def __init__(self, d_model, d_feature, n_heads, dropout=0.1):
+        super().__init__()
+        self.d_model = d_model
+        self.d_feature = d_feature
+        self.n_heads = n_heads
+        # in practice, d_model == d_feature * n_heads
+        assert d_model == d_feature * n_heads
+ 
+        # Note that this is very inefficient:
+        # I am merely implementing the heads separately because it is 
+        # easier to understand this way
+        self.attn_heads = nn.ModuleList([
+            AttentionHead(d_model, d_feature, dropout) for _ in range(n_heads)
+        ])
+        self.projection = nn.Linear(d_feature * n_heads, d_model) 
+     
+    def forward(self, queries, keys, values, mask=None):
+        x = [attn(queries, keys, values, mask=mask) # (Batch, Seq, Feature)
+             for i, attn in enumerate(self.attn_heads)]
+         
+        # reconcatenate
+        x = torch.cat(x, dim=2) # (Batch, Seq, D_Feature * n_heads)
+        x = self.projection(x) # (Batch, Seq, D_Model)
+        return x
+
+
+class ScaledDotProductAttention(nn.Module):
+    def __init__(self, dropout=0.1):
+        super().__init__()
+        self.dropout = nn.Dropout(dropout)
+ 
+    def forward(self, query, key, value, mask=None, dropout=None):
+        d_k = key.size(-1) # get the size of the key
+        scores = torch.matmul(query, key.transpose(-2,-1))/math.sqrt(d_k)
+        # fill attention weights with 0s where padded
+        if mask is not None: scores = scores.masked_fill(mask, 0)
+        p_attn = F.softmax(scores, dim = -1)
+        if dropout is not None:
+          p_attn = dropout(p_attn)
+        output = torch.matmul(p_attn, value)
+        return output
 
 class CNN_PRNN_ENCODER(nn.Module):
     def __init__(self,args):
@@ -247,33 +308,27 @@ class CNN_PRNN_ENCODER(nn.Module):
 
         # self.attention = MultiHeadSelfAttention(cfg.RNN_ATT.n_heads, cfg.RNN.hidden_size*2, cfg.RNN.hidden_size)   #cfg.CNNRNN_ATT.n_heads
         self.att = multi_attention(in_size = cfg.RNN.hidden_size*2, hidden_size = cfg.RNN.hidden_size, n_heads = 1)
-        self.fc = nn.Linear(1024,1024)
+        self.LayerNorm1 = nn.LayerNorm(40)
+        self.LayerNorm2 = nn.LayerNorm(1024)
+        self.fc = nn.Linear(1024,2048)
         self.bnorm = nn.BatchNorm1d(1024)
     def forward(self, input):
+        input = self.LayerNorm1(input)
         output,_  = self.pLSTM_layer0(input)
         for i in range(1,cfg.RNN.num_layers):
             output, _ = getattr(self,'pLSTM_layer'+str(i))(output)
         if cfg.audio_attention:
             # print(self.args.audio_attention)
             # print('with the audio attention')
-            global_feature = self.att(output)
+            x = self.att(output)
+        
+            # att = self.attn_head(global_feature, output, output)
+        
+        
         else:
             # print('without the audio attention')
-            global_feature = output.mean(1)
-        # unpack again as at the moment only rnn layers except packed_sequence objects
-        # out = output[:,-1,:]         
-        # features, attn = self.attention(output)
-
-        # out = nn.functional.normalize(out, p=2, dim=1)    
-        # out = l2norm(out)
-        # features = l2norm(features)
-        # loc_feature = features
-        # out_repeat = out.unsqueeze(1).repeat(1,features.shape[1],1)
-        # features = features + out_repeat
-        # global_feature = features.mean(1)
-        # global_feature = self.bnorm(global_feature)
-        # global_feature = self.fc(global_feature)
-
-        # global_feature = nn.functional.normalize(global_feature, p=2, dim=1)    
-        # features = nn.functional.normalize(features, p=2, dim=2)  
-        return global_feature #,features,loc_feature
+            x = x.mean(1)
+        x =  self.bnorm(x)
+        x = self.fc(x)  
+        x = nn.functional.normalize(x, p=2, dim=1)  
+        return x #,features,loc_feature
