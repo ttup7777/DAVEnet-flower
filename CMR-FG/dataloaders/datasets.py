@@ -40,7 +40,7 @@ def prepare_data(data):
         captions = Variable(captions)    
         spec_length = Variable(spec_length)
     
-    return real_imgs, captions, class_ids, keys, spec_length
+    return real_imgs, captions,class_ids, keys, spec_length
 
 def pad_collate(batch):
     max_input_len = float('-inf')
@@ -69,6 +69,7 @@ def pad_collate(batch):
 
 def get_imgs(img_path, imsize, bbox=None, transform=None, normalize=None):
     img = Image.open(img_path).convert('RGB')
+    
     width, height = img.size
     if bbox is not None:
         r = int(np.maximum(bbox[2], bbox[3]) * 0.75)
@@ -79,9 +80,11 @@ def get_imgs(img_path, imsize, bbox=None, transform=None, normalize=None):
         x1 = np.maximum(0, center_x - r)
         x2 = np.minimum(width, center_x + r)
         img = img.crop([x1, y1, x2, y2])
+    
 
     if transform is not None:
         img = transform(img)
+    
 
     return normalize(img)
 
@@ -383,13 +386,15 @@ class SpeechDataset(data.Dataset):
     def load_bbox(self):
         data_dir = self.data_dir
         bbox_path = os.path.join(data_dir, 'CUB_200_2011/bounding_boxes.txt')
-        df_bounding_boxes = pd.read_csv(bbox_path, delim_whitespace=True, header=None).astype(int)
+        df_bounding_boxes = pd.read_csv(bbox_path,
+                                        delim_whitespace=True,
+                                        header=None).astype(int)
         #
         filepath = os.path.join(data_dir, 'CUB_200_2011/images.txt')
         df_filenames = \
             pd.read_csv(filepath, delim_whitespace=True, header=None)
         filenames = df_filenames[1].tolist()
-        # print('Total filenames: ', len(filenames), filenames[0])
+        print('Total filenames: ', len(filenames), filenames[0])
         #
         filename_bbox = {img_file[:-4]: [] for img_file in filenames}
         numImgs = len(filenames)
@@ -437,7 +442,7 @@ class SpeechDataset(data.Dataset):
             label = self.labels[index]
         else:
             label = cls_id  #        
-        #data_dir = '%s/CUB_200_2011' % self.data_dir
+        # data_dir = '%s/CUB_200_2011' % self.data_dir
         if cfg.TRAIN.MODAL != 'extraction':
             
             if self.bbox is not None:
@@ -521,6 +526,7 @@ class SpeechDataset(data.Dataset):
         
         else:
             return imgs, caps, cls_id, key, label    #  处理完的图像 ，单词编号 ，单词数量（固定的cfg.TEXT.WORDS_NUM） ，类别ID，图像名称
+            # return imgs, caps, cls_id, key, audio_file, audio_ix
         # else:
         #     return imgs, caps, cls_id, key
         #只需要输出imgs, caps, cls_id， key 即可

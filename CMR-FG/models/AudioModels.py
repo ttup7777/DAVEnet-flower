@@ -313,7 +313,7 @@ class CNN_PRNN_ENCODER(nn.Module):
         self.fc = nn.Linear(1024,2048)
         self.bnorm = nn.BatchNorm1d(1024)
     def forward(self, input):
-        input = self.LayerNorm1(input)
+        # input = self.LayerNorm1(input)
         output,_  = self.pLSTM_layer0(input)
         for i in range(1,cfg.RNN.num_layers):
             output, _ = getattr(self,'pLSTM_layer'+str(i))(output)
@@ -324,11 +324,10 @@ class CNN_PRNN_ENCODER(nn.Module):
         
             # att = self.attn_head(global_feature, output, output)
         
-        
         else:
             # print('without the audio attention')
-            x = x.mean(1)
-        x =  self.bnorm(x)
-        x = self.fc(x)  
+            x = output.mean(1)
+        # x =  self.bnorm(x)
+        # x = self.fc(x)  
         x = nn.functional.normalize(x, p=2, dim=1)  
         return x #,features,loc_feature

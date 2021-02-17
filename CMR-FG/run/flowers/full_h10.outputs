@@ -1,0 +1,71 @@
+current #steps=0, #epochs=0
+start training...
+
+ Epoch: [5] Loss: 4.9070  R1_I2A: 0.4771 R1_A2I: 0.3331 
+                 
+ Epoch: [10] Loss: 4.2697  R1_I2A: 0.5316 R1_A2I: 0.4002 
+                 
+ Epoch: [15] Loss: 4.1990  R1_I2A: 0.5394 R1_A2I: 0.4249 
+                 
+ Epoch: [20] Loss: 3.5521  R1_I2A: 0.5714 R1_A2I: 0.4347 
+                 
+ Epoch: [25] Loss: 3.5206  R1_I2A: 0.5541 R1_A2I: 0.4533 
+                 
+ Epoch: [25] Loss: 3.5206  R1_I2A: 0.5581 mAP_I2A: 0.5005  R1_A2I: 0.4533 mAP_A2I: 0.4002 
+                     
+ Epoch: [30] Loss: 2.9788  R1_I2A: 0.5506 R1_A2I: 0.4583 
+                 
+ Epoch: [30] Loss: 2.9788  R1_I2A: 0.5497 mAP_I2A: 0.4973  R1_A2I: 0.4583 mAP_A2I: 0.4006 
+                     
+ Epoch: [35] Loss: 3.3326  R1_I2A: 0.5636 R1_A2I: 0.4790 
+                 
+ Epoch: [35] Loss: 3.3326  R1_I2A: 0.5658 mAP_I2A: 0.5086  R1_A2I: 0.4790 mAP_A2I: 0.4094 
+                     
+ Epoch: [40] Loss: 2.9269  R1_I2A: 0.6026 R1_A2I: 0.4698 
+                 
+ Epoch: [40] Loss: 2.9269  R1_I2A: 0.6051 mAP_I2A: 0.5298  R1_A2I: 0.4698 mAP_A2I: 0.4116 
+
+ Epoch: [45] Loss: 2.7254  R1_I2A: 0.5957 R1_A2I: 0.4716 
+                 
+ Epoch: [45] Loss: 2.7254  R1_I2A: 0.5989 mAP_I2A: 0.5173  R1_A2I: 0.4716 mAP_A2I: 0.4135 
+                     
+ Epoch: [50] Loss: 2.2553  R1_I2A: 0.5870 R1_A2I: 0.4816 
+                 
+ Epoch: [50] Loss: 2.2553  R1_I2A: 0.5874 mAP_I2A: 0.5258  R1_A2I: 0.4816 mAP_A2I: 0.4254 
+                     
+ Epoch: [55] Loss: 2.7122  R1_I2A: 0.5905 R1_A2I: 0.4886 
+                 
+ Epoch: [55] Loss: 2.7122  R1_I2A: 0.5982 mAP_I2A: 0.5290  R1_A2I: 0.4886 mAP_A2I: 0.4251 
+                     
+ Epoch: [60] Loss: 3.0303  R1_I2A: 0.5957 R1_A2I: 0.4877 
+                 
+ Epoch: [60] Loss: 3.0303  R1_I2A: 0.5966 mAP_I2A: 0.5349  R1_A2I: 0.4877 mAP_A2I: 0.4253 
+                     
+ Epoch: [65] Loss: 1.9809  R1_I2A: 0.6026 R1_A2I: 0.4739 
+                 
+ Epoch: [70] Loss: 2.5419  R1_I2A: 0.5983 R1_A2I: 0.4882 
+                 
+ Epoch: [70] Loss: 2.5419  R1_I2A: 0.5951 mAP_I2A: 0.5224  R1_A2I: 0.4882 mAP_A2I: 0.4256 
+                     
+ Epoch: [75] Loss: 2.2727  R1_I2A: 0.5749 R1_A2I: 0.4730 
+                 
+ Epoch: [80] Loss: 1.8867  R1_I2A: 0.5974 R1_A2I: 0.4713 
+
+ Epoch: [85] Loss: 1.5776  R1_I2A: 0.6113 R1_A2I: 0.4567 
+                 
+ Epoch: [85] Loss: 1.5776  R1_I2A: 0.6105 mAP_I2A: 0.5322  R1_A2I: 0.4567 mAP_A2I: 0.4089 
+                     
+ Epoch: [90] Loss: 1.4729  R1_I2A: 0.5887 R1_A2I: 0.4583 
+                 
+ Epoch: [95] Loss: 1.4092  R1_I2A: 0.5879 R1_A2I: 0.4677 
+                 
+ Epoch: [100] Loss: 1.2295  R1_I2A: 0.6026 R1_A2I: 0.4581 
+                 
+ Epoch: [105] Loss: 1.3090  R1_I2A: 0.5732 R1_A2I: 0.4539 
+                 
+ Epoch: [110] Loss: 1.0805  R1_I2A: 0.6052 R1_A2I: 0.4493 
+                 
+ Epoch: [115] Loss: 1.1402  R1_I2A: 0.6017 R1_A2I: 0.4487 
+                 
+ Epoch: [120] Loss: 1.1087  R1_I2A: 0.6095 R1_A2I: 0.4423 
+                 

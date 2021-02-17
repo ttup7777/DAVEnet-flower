@@ -1,0 +1,18 @@
+64 13.0 True True
+Load filenames from: /tudelft.net/staff-bulk/ewi/insy/SpeechLab/TianTian/data/flowers/Oxford102/train/filenames.pickle (7034)
+Load filenames from: /tudelft.net/staff-bulk/ewi/insy/SpeechLab/TianTian/data/flowers/Oxford102/test/filenames.pickle (1155)
+Load filenames from: /tudelft.net/staff-bulk/ewi/insy/SpeechLab/TianTian/data/flowers/Oxford102/test/filenames.pickle (1155)
+/tudelft.net/staff-bulk/ewi/insy/SpeechLab/TianTian/xinsheng/Retrieval_v4.3/utils/config.py:235: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  yaml_cfg = edict(yaml.load(f))
+/tudelft.net/staff-bulk/ewi/insy/SpeechLab/TianTian/xinsheng/Retrieval_v4.3/models/AudioModels.py:89: UserWarning: nn.init.orthogonal is now deprecated in favor of nn.init.orthogonal_.
+  nn.init.orthogonal(self.hidden.weight.data)
+/tudelft.net/staff-bulk/ewi/insy/SpeechLab/TianTian/xinsheng/Retrieval_v4.3/models/AudioModels.py:91: UserWarning: nn.init.orthogonal is now deprecated in favor of nn.init.orthogonal_.
+  nn.init.orthogonal(self.hidden.weight.data)
+Traceback (most recent call last):
+  File "run.py", line 283, in <module>
+    train(MODELS,train_loader,val_loader,test_loader, args)
+  File "/tudelft.net/staff-bulk/ewi/insy/SpeechLab/TianTian/xinsheng/Retrieval_v4.3/steps/traintest.py", line 60, in train
+    audio_model.load_state_dict(torch.load("%s/models/audio_model_%d.pth" % (exp_dir,epoch)))
+  File "/home/nfs/tiantian/.local/lib/python3.6/site-packages/torch/serialization.py", line 419, in load
+    f = open(f, 'rb')
+FileNotFoundError: [Errno 2] No such file or directory: 'outputs/attention_layer4/flowers/full_13/models/audio_model_80.pth'

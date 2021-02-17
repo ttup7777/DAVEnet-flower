@@ -4,14 +4,15 @@ cfg_file=Confg/flower_train_batch_wo_ia.yml
 result_file=wo_ia.text
 seed=200
 lr=0.0001
-wd=1e-4
+wd=1e-5
 workers=8
-batch_size=128
+batch_size=64
 n_heads=1
-n_epochs=120
-start_epoch=60
+n_epochs=40
+start_epoch=0
 lr_decay=50
 smooth_gamm3=10.0
+gamma_clss=0.5
 
 
 python run.py --data_path $data_path \

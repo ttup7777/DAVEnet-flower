@@ -1,0 +1,36 @@
+GAMMA3:1 best_epoch:45 best_R1:0.5051 best_I2A:0.2831 best_A2I:0.222 best_mAPI2A:0.2449 best_mAPA2I:0.2063
+GAMMA3:5 best_epoch:65 best_R1:1.0346 best_I2A:0.5887 best_A2I:0.4459 best_mAPI2A:0.4816 best_mAPA2I:0.3988
+GAMMA3:10 best_epoch:55 best_R1:1.0868 best_I2A:0.5982 best_A2I:0.4886 best_mAPI2A:0.529 best_mAPA2I:0.4251
+GAMMA3:11 best_epoch:55 best_R1:1.0935 best_I2A:0.6066 best_A2I:0.4869 best_mAPI2A:0.531 best_mAPA2I:0.4243
+GAMMA3:12 best_epoch:55 best_R1:1.1063 best_I2A:0.6189 best_A2I:0.4874 best_mAPI2A:0.5309 best_mAPA2I:0.426
+GAMMA3:13 best_epoch:60 best_R1:1.1177 best_I2A:0.6374 best_A2I:0.4926 best_mAPI2A:0.5447 best_mAPA2I:0.4322
+GAMMA3:14 best_epoch:35 best_R1:1.0875 best_I2A:0.6105 best_A2I:0.477 best_mAPI2A:0.5332 best_mAPA2I:0.4139
+
+GAMMA3:15 best_epoch:85 best_R1:1.1025 best_I2A:0.6243 best_A2I:0.4782 best_mAPI2A:0.5421 best_mAPA2I:0.4231
+GAMMA3:16 best_epoch:95 best_R1:1.1095 best_I2A:0.6313 best_A2I:0.4782 best_mAPI2A:0.5425 best_mAPA2I:0.4211
+GAMMA3:17 best_epoch:95 best_R1:1.1012 best_I2A:0.6236 best_A2I:0.4776 best_mAPI2A:0.546 best_mAPA2I:0.4186
+GAMMA3:18 best_epoch:85 best_R1:1.1114 best_I2A:0.6212 best_A2I:0.4902 best_mAPI2A:0.5452 best_mAPA2I:0.4263
+GAMMA3:19 best_epoch:95 best_R1:1.1035 best_I2A:0.6197 best_A2I:0.4838 best_mAPI2A:0.5418 best_mAPA2I:0.4228
+GAMMA3:20 best_epoch:110 best_R1:1.0904 best_I2A:0.6173 best_A2I:0.4731 best_mAPI2A:0.5348 best_mAPA2I:0.4208
+GAMMA3:50 best_epoch:60 best_R1:1.0402 best_I2A:0.5879 best_A2I:0.4523 best_mAPI2A:0.5 best_mAPA2I:0.3832
+GAMMA3:100 best_epoch:80 best_R1:1.0093 best_I2A:0.5887 best_A2I:0.4206 best_mAPI2A:0.4955 best_mAPA2I:0.3735
+
+
+attn:
+GAMMA3:13 best_epoch:50 best_R1:1.0815000000000001 best_I2A:0.6005 best_A2I:0.481 best_mAPI2A:0.5171 best_mAPA2I:0.4179
+GAMMA3:10 best_epoch:45 best_R1:1.0735000000000001 best_I2A:0.6035 best_A2I:0.47 best_mAPI2A:0.5191 best_mAPA2I:0.4139
+
+wo/ia:GAMMA3:13 best_epoch:70 best_R1:1.099 best_I2A:0.6135 best_A2I:0.4855 best_mAPI2A:0.5336 best_mAPA2I:0.4195
+wo/isa:GAMMA3:13 best_epoch:70 best_R1:1.0609 best_I2A:0.6005 best_A2I:0.4604 best_mAPI2A:0.5086 best_mAPA2I:0.3977
+wo/sa:GAMMA3:13 best_epoch:35 best_R1:1.0881 best_I2A:0.6143 best_A2I:0.4738 best_mAPI2A:0.522 best_mAPA2I:0.4085
+
+FSEN:
+GAMMA3:13 best_epoch:85 best_R1:1.1051 best_I2A:0.6243 best_A2I:0.4808 best_mAPI2A:0.5324 best_mAPA2I:0.426
+
+Attention after layer4: 
+GAMMA3:13 best_epoch:55 best_R1:1.0722 best_I2A:0.5943 best_A2I:0.4779 best_mAPI2A:0.5118 best_mAPA2I:0.419
+FSEN(1024): 
+GAMMA3:13 best_epoch:75 best_R1:1.1085 best_I2A:0.6159 best_A2I:0.4926 best_mAPI2A:0.5267 best_mAPA2I:0.4322
+
+
+TripletLoss: GAMMA3:13 best_epoch:110 best_R1:0.5353 best_I2A:0.3041 best_A2I:0.2312 best_mAPI2A:0.2448 best_mAPA2I:0.206

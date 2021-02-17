@@ -93,9 +93,6 @@ __C.IMGF.Layer = 1
 __C.IMGF.input_dim = 2048
 __C.IMGF.hid_dim = 1600
 __C.IMGF.embedding_dim = 1024
-__C.IMGF.num_attention_heads = 2
-__C.IMGF.attention_probs_dropout_prob= 0.1
-__C.IMGF.intermediate_size= 2048
 
 
 
@@ -110,7 +107,7 @@ __C.SPEECH.CAPTIONS_PER_IMAGE = 10
 __C.SPEECH.window_size = 25
 __C.SPEECH.stride = 10
 __C.SPEECH.input_dim = 40
-__C.SPEECH.hidden_size = 1024
+__C.SPEECH.hidden_size = 512
 __C.SPEECH.embedding_dim = 1024
 __C.SPEECH.num_layers = 2
 __C.SPEECH.sample = 22050
@@ -141,22 +138,18 @@ __C.CNNRNN_ATT.n_heads = 1
 
 __C.RNN = edict()
 __C.RNN.input_size = 40     #64    
-__C.RNN.hidden_size = 512
+__C.RNN.hidden_size = 1024
 __C.RNN.num_layers = 3
 __C.RNN.dropout = 0.0
 __C.RNN.bidirectional = True
 
 __C.RNN_ATT = edict()
-__C.RNN_ATT.in_size = 1024
+__C.RNN_ATT.in_size = 2048
 __C.RNN_ATT.hidden_size = 128
 __C.RNN_ATT.n_heads = 5
 
 
-__C.SPEECH.attention_probs_dropout_prob = 0.1
-__C.SPEECH.hidden_act = "gelu"
-__C.SPEECH.hidden_dropout_prob = 0.1
-__C.SPEECH.intermediate_size = 1024
-__C.SPEECH.num_attention_heads = 2
+
 
 __C.CLASSIFICATION = edict()
 __C.CLASSIFICATION.data = 'audio'

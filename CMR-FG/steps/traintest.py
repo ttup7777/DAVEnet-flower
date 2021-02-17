@@ -34,9 +34,9 @@ def train(Models,train_loader,val_loader, test_loader, args):
                 time.time() - start_time])
         with open("%s/progress.pkl" % exp_dir, "wb") as f:
             pickle.dump(progress, f)
-    
+
     # create/load exp
-    
+    """
     if args.resume:
         progress_pkl = "%s/progress.pkl" % exp_dir
         progress, epoch, global_step, best_epoch, best_acc = load_progress(progress_pkl)
@@ -45,34 +45,33 @@ def train(Models,train_loader,val_loader, test_loader, args):
         print("  global_step = %s" % global_step)
         print("  best_epoch = %s" % best_epoch)
         print("  best_acc = %.4f" % best_acc)
-    
+    """
 
     if not isinstance(audio_model, torch.nn.DataParallel):
         audio_model = nn.DataParallel(audio_model)
 
     if not isinstance(image_model, torch.nn.DataParallel):
         image_model = nn.DataParallel(image_model)
-
+    
    
     epoch = cfg.start_epoch
     
     if epoch != 0:
-        # audio_model.load_state_dict(torch.load("%s/models/audio_model_%d.pth" % (exp_dir,epoch)))
-        # image_model.load_state_dict(torch.load("%s/models/image_model_%d.pth" % (exp_dir,epoch)))
-        audio_model.load_state_dict(torch.load("%s/models/best_audio_model_%d.pth" % (exp_dir,epoch)))
-        image_model.load_state_dict(torch.load("%s/models/best_image_model_%d.pth" % (exp_dir,epoch)))            
+        audio_model.load_state_dict(torch.load("%s/models/audio_model_%d.pth" % (exp_dir,epoch)))
+        image_model.load_state_dict(torch.load("%s/models/image_model_%d.pth" % (exp_dir,epoch)))        
         print("loaded parameters from epoch %d" % epoch)
     
 
     audio_model = audio_model.to(device)    
     image_model = image_model.to(device)   
+
     # Set up the optimizer
     # audio_trainables = [p for p in audio_model.parameters() if p.requires_grad]
     audio_trainables = [p for p in audio_model.parameters() if p.requires_grad]
-    image_trainables = [p for p in image_model.parameters() if p.requires_grad] # if p.requires_grad
+    image_trainables = [p for p in image_model.parameters() if p.requires_grad] # if p.requires_grad    
    
     
-    trainables = audio_trainables + image_trainables    
+    trainables = audio_trainables + image_trainables
     
     
     if args.optim == 'sgd':
@@ -90,14 +89,15 @@ def train(Models,train_loader,val_loader, test_loader, args):
     
         
     
+    """
     if epoch != 0:
-        optimizer.load_state_dict(torch.load("%s/models/optim_state_%d.pth" % (exp_dir, epoch)))
+        optimizer.load_state_dict(torch.load("%s/models/optim_state.%d.pth" % (exp_dir, epoch)))
         for state in optimizer.state.values():
             for k, v in state.items():
                 if isinstance(v, torch.Tensor):
                     state[k] = v.to(device)
         print("loaded state dict from epoch %d" % epoch)
-    
+    """
 
     
     
@@ -107,13 +107,13 @@ def train(Models,train_loader,val_loader, test_loader, args):
     
     audio_model.train()
     image_model.train()
-  
+    criterion_c = nn.CrossEntropyLoss() 
     while epoch<=cfg.TRAIN.MAX_EPOCH:              
         epoch += 1
         adjust_learning_rate(args.lr, args.lr_decay, optimizer, epoch)      
         end_time = time.time()
         audio_model.train()
-        image_model.train()       
+        image_model.train()    
         for i, (image_input, audio_input, cls_id, key,label) in enumerate(train_loader):
                         
             # measure data loading time
@@ -126,17 +126,17 @@ def train(Models,train_loader,val_loader, test_loader, args):
             image_input = image_input.float().to(device)
             image_input = image_input.squeeze(1)            
             
+ 
             optimizer.zero_grad()  
-            output = image_model(image_input)
-            # image_class_output = class_model(image_output)                      
-            audio_output = audio_model(audio_input)               
+            image_output = image_model(image_input)
+                                 
+            audio_output = audio_model(audio_input)           
 
             loss = 0
-            
-            losso1,losso2 = batch_loss(output,audio_output,cls_id)
-            loss = losso1+losso2
-            
 
+            lossb1,lossb2 = batch_loss(image_output,audio_output,cls_id)
+            loss = lossb1 + lossb2
+            
             loss.backward()
             optimizer.step()    
             
@@ -156,7 +156,7 @@ def train(Models,train_loader,val_loader, test_loader, args):
         # mAP = validate(audio_model, image_model, test_loader)
         # Rank1_I2A, mAP_I2A, Rank1_A2I, mAP_A2I= validate_all(audio_model, image_model,test_loader,args)   
         if epoch % 5 ==0:
-            Rank1_I2A, mAP_I2A, Rank1_A2I, mAP_A2I= validate(audio_model, image_model,val_loader,args)   
+            Rank1_I2A, mAP_I2A, Rank1_A2I, mAP_A2I= validate(audio_model, image_model,test_loader,args)   
             # Rank1_I2A, mAP_I2A, Rank1_A2I, mAP_A2I= validate(audio_model, image_model,test_loader,args)            
             info = ' Epoch: [{0}] Loss: {loss_meter.val:.4f}  R1_I2A: {R1_:.4f} R1_A2I: {R2_:.4f} \n \
                 '.format(epoch,loss_meter=loss_meter,R1_=Rank1_I2A,R2_=Rank1_A2I)
@@ -168,8 +168,9 @@ def train(Models,train_loader,val_loader, test_loader, args):
 
             avg_acc = Rank1_I2A + Rank1_A2I            
             
+            
             # haven't use the test processing yet
-            if avg_acc > best_acc and epoch>30:    #or Rank1_I2A > best_I2A or Rank1_A2I > best_A2I
+            if avg_acc > best_acc and epoch>20:    #or Rank1_I2A > best_I2A or Rank1_A2I > best_A2I
 
                 Rank1_I2A, mAP_I2A, Rank1_A2I, mAP_A2I= validate_all(audio_model, image_model,test_loader,args)            
                 info = ' Epoch: [{0}] Loss: {loss_meter.val:.4f}  R1_I2A: {R1_:.4f} mAP_I2A: {mAP1_:.4f}  R1_A2I: {R2_:.4f} mAP_A2I: {mAP2_:.4f} \n \
@@ -183,18 +184,21 @@ def train(Models,train_loader,val_loader, test_loader, args):
                 torch.save(audio_model.state_dict(),
                     "%s/models/best_audio_model_%d.pth" % (exp_dir,epoch))
                 torch.save(image_model.state_dict(),
-                    "%s/models/best_image_model_%d.pth" % (exp_dir,epoch))               
+                    "%s/models/best_image_model_%d.pth" % (exp_dir,epoch))   
+
                 torch.save(optimizer.state_dict(), "%s/models/optim_state_%d.pth" % (exp_dir,epoch))
                 _save_progress()
+            
             if avg_acc > best_acc:                
                 best_acc = avg_acc
             
-        # if epoch%20 == 0:
-        #         torch.save(audio_model.state_dict(),
-        #             "%s/models/audio_model_%d.pth" % (exp_dir,epoch))
-        #         torch.save(image_model.state_dict(),
-        #             "%s/models/image_model_%d.pth" % (exp_dir,epoch))                
-        #         torch.save(optimizer.state_dict(), "%s/models/optim_state_%d.pth" % (exp_dir,epoch))
+        if epoch%20 == 0:
+                torch.save(audio_model.state_dict(),
+                    "%s/models/audio_model_%d.pth" % (exp_dir,epoch))
+                torch.save(image_model.state_dict(),
+                    "%s/models/image_model_%d.pth" % (exp_dir,epoch))    
+
+                torch.save(optimizer.state_dict(), "%s/models/optim_state_%d.pth" % (exp_dir,epoch))
            
 
 
@@ -320,7 +324,7 @@ def validate_all(audio_model, image_model,val_loader,args):
 
             # compute output
             if cfg.TRAIN.MODAL == 'co-train':
-                image_output= image_model(image_input)   
+                image_output = image_model(image_input)   
             else:
                 image_output = image_input
             

@@ -1,20 +1,21 @@
-data_path=/tudelft.net/staff-bulk/ewi/insy/MMC/xinsheng/data/102flowers
-save_root=outputs/01_Baseline/flowers/full
+data_path=/tudelft.net/staff-bulk/ewi/insy/SpeechLab/TianTian/data/flowers/Oxford102
+save_root=outputs/attention_layer4/flowers/full
 cfg_file=Confg/flower_train_batch.yml
 result_file=full.text
 seed=200
 lr=0.0001
-wd=1e-4
+wd=1e-5
 workers=8
-batch_size=128
+batch_size=64
 n_heads=1
-n_epochs=140
-start_epoch=60
+n_epochs=120
+start_epoch=80
 lr_decay=50
 smooth_gamm3=10.0
+gamma_clss=0.5
 
 
-python run.py --data_path $data_path \
+python3 run.py --data_path $data_path \
               --save_root $save_root \
       			  --cfg_file $cfg_file\
       			  --lr $lr\
